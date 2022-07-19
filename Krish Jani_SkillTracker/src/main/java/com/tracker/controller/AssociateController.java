@@ -19,27 +19,13 @@ import com.tracker.exception.BusinessException;
 import com.tracker.model.AssociateModel;
 import com.tracker.service.intf.IAssociateService;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class AssociateController.
- */
 @CrossOrigin(origins="*")
 @RestController
 public class AssociateController {
 	
-
-	/** The associate service. */
 	@Autowired
 	private IAssociateService associateService;
-	
-	/**
-	 * Adds the associate.
-	 *
-	 * @param associateData the associate data
-	 * @param file the file
-	 * @return the string
-	 * @throws BusinessException the business exception
-	 */
+
 	@RequestMapping(value="/addAssociate",method=RequestMethod.POST)
 	public String addAssociate(@RequestParam(value="data",required=true) String associateData,@RequestParam(value="file",required=false) MultipartFile file) throws BusinessException {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -59,26 +45,12 @@ public class AssociateController {
 		
 	}
 	
-	/**
-	 * Gets the associate pic.
-	 *
-	 * @param id the id
-	 * @return the associate pic
-	 * @throws BusinessException the business exception
-	 */
 	@RequestMapping(value="/getAssociatePic/{id}",method=RequestMethod.GET, produces = {MediaType.IMAGE_JPEG_VALUE , MediaType.IMAGE_PNG_VALUE})
 	public byte[] getAssociatePic(@PathVariable int id) throws BusinessException {
 		return associateService.getAssociatePicture(id);
 		
 	}
-		
-	
-	/**
-	 * View all associates.
-	 *
-	 * @return the list
-	 * @throws BusinessException the business exception
-	 */
+
 	@RequestMapping(value="/viewAllAssociates",method=RequestMethod.GET)
 	public List<AssociateModel> viewAllAssociates() throws BusinessException {
 		List<AssociateModel> associatesList = associateService.fetchAllAssociateDetails();
@@ -86,14 +58,6 @@ public class AssociateController {
 		
 	}
 
-	
-	/**
-	 * Delete associate.
-	 *
-	 * @param associateId the associate id
-	 * @return the string
-	 * @throws BusinessException the business exception
-	 */
 	@RequestMapping(value="/deleteAssociate/{associateId}",method=RequestMethod.GET)
 	public String deleteAssociate(@PathVariable int associateId) throws BusinessException {
 		return associateService.deleteAssociate(associateId);
