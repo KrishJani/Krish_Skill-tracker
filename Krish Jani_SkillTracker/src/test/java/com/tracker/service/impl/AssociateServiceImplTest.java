@@ -1,11 +1,8 @@
 package com.tracker.service.impl;
-
 import static org.junit.Assert.*;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.tracker.constants.CommonConstants;
 import com.tracker.dao.AssociateDao;
 import com.tracker.dao.SkillsDao;
@@ -26,71 +22,28 @@ import com.tracker.model.AssociateModel;
 import com.tracker.model.SkillRatingModel;
 import com.tracker.model.SkillsModel;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class AssociateServiceImplTest.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class AssociateServiceImplTest {
-	
-	/** The associate service impl. */
 	@InjectMocks
 	private AssociateServiceImpl associateServiceImpl;
-	
-	/** The associate dao. */
 	@Mock
 	private AssociateDao associateDao;
-	
-	/** The skills dao. */
 	@Mock
 	private SkillsDao skillsDao;
-	
-	/** The associate model. */
 	private AssociateModel associateModel;
-	
-	/** The associate model 1. */
 	private AssociateModel associateModel1;
-	
-	/** The file. */
 	private MultipartFile file;
-	
-	/** The pic. */
 	private byte[] pic;	
-	
-	/** The skill model list. */
 	private List<SkillsModel> skillModelList;
-	
-	/** The skills model. */
 	private SkillsModel skillsModel;
-	
-	/** The associate list. */
 	private List<AssociateEntity> associateList;
-	
-	/** The associate entity. */
 	private AssociateEntity associateEntity;
-	
-	/** The associate id list. */
 	private List<Integer> associateIdList;
-	
-	/** The skill rating list. */
 	private List<SkillRatingModel> skillRatingList;
-	
-	/** The skill rating model. */
 	private SkillRatingModel skillRatingModel;
-	
-	/** The skills entity. */
 	private SkillsEntity skillsEntity;
-	
-	/** The skills entity list. */
 	private List<SkillsEntity> skillsEntityList;
-	
-	/** The associate model expected. */
 	List<AssociateModel> associateModelExpected;
-	
-	
-	/**
-	 * Setup mock.
-	 */
 	@Before
 	public void setupMock() {
 		skillsEntity = new SkillsEntity();
@@ -164,34 +117,17 @@ public class AssociateServiceImplTest {
 		associateModelExpected = new ArrayList<>();
 		associateModelExpected.add(associateModel);
 	}
-
-	/**
-	 * Test add associate.
-	 *
-	 * @throws BusinessException the business exception
-	 */
 	@Test
 	public void testAddAssociate() throws BusinessException {			
 		Mockito.when(associateDao.getPicUploaded(123)).thenReturn(pic);
 		associateServiceImpl.addAssociate(associateModel, file); 
 	}
-	
-	/**
-	 * Test add associate female gender.
-	 *
-	 * @throws BusinessException the business exception
-	 */
 	@Test
 	public void testAddAssociateFemaleGender() throws BusinessException {			
 		Mockito.when(associateDao.getPicUploaded(123)).thenReturn(pic);
 		associateServiceImpl.addAssociate(associateModel1, file); 
 	}
-	
-	/**
-	 * Test fetch all associate details.
-	 *
-	 * @throws BusinessException the business exception
-	 */
+
 	@Test
 	public void testFetchAllAssociateDetails() throws BusinessException {
 		Mockito.when(associateDao.fetchAllAssociateDetails()).thenReturn(associateList);
@@ -202,11 +138,6 @@ public class AssociateServiceImplTest {
 		assertEquals(associateModelExpected.get(0).getAssociateId(), associateList.get(0).getAssociateId());
 	}
 	
-	/**
-	 * Test delete associate.
-	 *
-	 * @throws BusinessException the business exception
-	 */
 	@Test
 	public void testDeleteAssociate() throws BusinessException {
 		String actual = associateServiceImpl.deleteAssociate(123); 
