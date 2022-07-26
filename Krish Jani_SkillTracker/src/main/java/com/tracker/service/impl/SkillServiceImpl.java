@@ -11,21 +11,12 @@ import com.tracker.dao.SkillsDao;
 import com.tracker.entity.SkillsEntity;
 import com.tracker.model.SkillsModel;
 import com.tracker.service.intf.ISkillService;
-
-// TODO: Auto-generated Javadoc
-/**
- * The Class SkillServiceImpl.
- */
 @Component
 public class SkillServiceImpl implements ISkillService{
 	
-	/** The skills dao. */
 	@Autowired
 	private SkillsDao skillsDao;
 
-	/* (non-Javadoc)
-	 * @see com.tracker.service.intf.ISkillService#addSkill(com.tracker.model.SkillsModel)
-	 */
 	public String addSkill(SkillsModel skillsModel) {
 		SkillsEntity skillsEntity = new SkillsEntity();
 		if(Integer.toString(skillsModel.getSkillId())!= null) {
@@ -36,9 +27,6 @@ public class SkillServiceImpl implements ISkillService{
 		return CommonConstants.SUCCESS_STRING; 
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.tracker.service.intf.ISkillService#viewAllSkills()
-	 */
 	public List<SkillsModel> viewAllSkills() {
 		 List<SkillsEntity> skillList = skillsDao.viewAllSkills();
 		 List<SkillsModel> skillsModelList = new ArrayList<SkillsModel>(); 
@@ -52,10 +40,6 @@ public class SkillServiceImpl implements ISkillService{
 		return skillsModelList; 
 		
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.tracker.service.intf.ISkillService#deleteSkill(com.tracker.model.SkillsModel)
-	 */
 	public String deleteSkill(SkillsModel skillsModel){
 		SkillsEntity skillsEntity = new SkillsEntity();
 		skillsEntity.setSkillId(skillsModel.getSkillId());
